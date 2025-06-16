@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>One Piece Story Mode</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sail the Grand Line in your browser with Devil Fruits, ships, and pirates!" />
+  <meta name="keywords" content="One Piece, EaglerCraft, Minecraft, browser, mod" />
+  <meta name="author" content="SpaM + GPT" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+
+  <!-- Load Minecraft engine -->
+  <script type="text/javascript" src="classes.js"></script>
+
+  <!-- Inject your mod logic -->
+  <script type="text/javascript" src="maps/mod.js"></script>
+
+  <script type="text/javascript">
+    if (document.location.href.startsWith("file:")) {
+      alert("Please run this from a web server, not directly from your computer.");
+    } else {
+      window.addEventListener("load", function () {
+        window.minecraftOpts = [
+          "game_frame", "assets.epk",
+          "CgAACQAHc2VydmVycwoAAAABCAACaXAAIHdzKHMpOi8vIChhZGRyZXNzIGhlcmUpOihwb3J0KSAvCAAEbmFtZQAIdGVtcGxhdGUBAAtoaWRlQWRkcmVzcwEIAApmb3JjZWRNT1REABl0aGlzIGlzIG5vdCBhIHJlYWwgc2VydmVyAAA="
+        ];
+        (function () {
+          var q = window.location.search;
+          if (typeof q === 'string' && q.startsWith("?")) {
+            q = new URLSearchParams(q);
+            var s = q.get("server");
+            if (s) window.minecraftOpts.push(s);
+          }
+        })();
+        main();
+      });
+    }
+  </script>
+</head>
+<body style="margin:0px;width:100vw;height:100vh;" id="game_frame">
+</body>
+</html>
